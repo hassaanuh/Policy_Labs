@@ -1,0 +1,159 @@
+,Column Name,Number of NAs
+0,Unnamed: 0,0
+1,ID,0
+2,pin,0
+3,Address,0
+4,Managing Organization,11178
+5,Property Status,0
+6,Date of Acquisition,8761
+7,Date of Disposition,14783
+8,Sales Status,8996
+9,Sale Offering Status,17452
+10,Sale Offering Reason,17450
+11,Sq. Ft.,212
+12,Square Footage - City Estimate,13753
+13,Land Value (2022),13674
+14,Ward,0
+15,Community Area Number,0
+16,Community Area Name,3
+17,Zoning Classification,3
+18,Zip Code,213
+19,Last Update,0
+20,Application Use,17415
+21,Grouped Parcels,17628
+22,Application Deadline,17137
+23,Offer Round,17130
+24,Application URL,17228
+25,X Coordinate,0
+26,Y Coordinate,0
+27,Latitude,0
+28,Longitude,0
+29,Location,0
+30,pin10,0
+31,year_old,0
+32,class_old,0
+33,triad_name,0
+34,triad_code,0
+35,township_name_old,0
+36,township_code_old,0
+37,nbhd_code,0
+38,tax_code,0
+39,zip_code,1820
+40,lon,4
+41,lat,4
+42,x_3435,4
+43,y_3435,4
+44,census_block_group_geoid,10
+45,census_block_geoid,10
+46,census_congressional_district_geoid,10
+47,census_congressional_district_num,10
+48,census_county_subdivision_geoid,10
+49,census_place_geoid,10
+50,census_puma_geoid,12
+51,census_school_district_unified_geoid,10
+52,census_state_representative_geoid,10
+53,census_state_representative_num,10
+54,census_state_senate_geoid,10
+55,census_state_senate_num,10
+56,census_tract_geoid,10
+57,census_zcta_geoid,12
+58,census_data_year,10
+59,census_acs5_congressional_district_geoid,10
+60,census_acs5_congressional_district_num,10
+61,census_acs5_county_subdivision_geoid,10
+62,census_acs5_place_geoid,10
+63,census_acs5_puma_geoid,12
+64,census_acs5_school_district_unified_geoid,10
+65,census_acs5_state_representative_geoid,10
+66,census_acs5_state_representative_num,10
+67,census_acs5_state_senate_geoid,10
+68,census_acs5_state_senate_num,10
+69,census_acs5_tract_geoid,10
+70,census_acs5_data_year,10
+71,cook_board_of_review_district_num,12
+72,cook_board_of_review_district_data_year,12
+73,cook_commissioner_district_num,12
+74,cook_commissioner_district_data_year,12
+75,cook_judicial_district_num,12
+76,cook_judicial_district_data_year,12
+77,ward_num,4
+78,ward_chicago_data_year,4
+79,chicago_community_area_num,146
+80,chicago_community_area_name,146
+81,chicago_community_area_data_year,146
+82,chicago_police_district_num,12
+83,chicago_police_district_data_year,12
+84,env_flood_fs_factor,166
+85,env_flood_fs_risk_direction,166
+86,env_flood_fs_data_year,166
+87,env_airport_noise_dnl,15
+88,env_airport_noise_data_year,10
+89,school_elementary_district_geoid,10
+90,school_elementary_district_name,10
+91,school_secondary_district_geoid,10
+92,school_secondary_district_name,10
+93,school_school_year,10
+94,school_data_year,10
+95,tax_municipality_num,4
+96,tax_municipality_name,4
+97,tax_school_elementary_district_num,17934
+98,tax_school_elementary_district_name,17934
+99,tax_school_secondary_district_num,17934
+100,tax_school_secondary_district_name,17934
+101,tax_school_unified_district_num,4
+102,tax_school_unified_district_name,4
+103,tax_community_college_district_num,4
+104,tax_community_college_district_name,4
+105,tax_fire_protection_district_num,17934
+106,tax_fire_protection_district_name,17934
+107,tax_library_district_num,4
+108,tax_library_district_name,4
+109,tax_park_district_num,4
+110,tax_park_district_name,4
+111,tax_sanitation_district_num,17934
+112,tax_sanitation_district_name,17934
+113,tax_special_service_area_num,16903
+114,tax_special_service_area_name,16903
+115,tax_tif_district_num,5285
+116,tax_tif_district_name,5285
+117,tax_data_year,4
+118,access_cmap_walk_id,106
+119,access_cmap_walk_nta_score,106
+120,access_cmap_walk_total_score,106
+121,access_cmap_walk_data_year,106
+122,misc_subdivision_id,649
+123,misc_subdivision_data_year,649
+124,env_ohare_noise_contour_no_buffer_bool,183
+125,env_ohare_noise_contour_half_mile_buffer_bool,183
+126,env_ohare_noise_contour_data_year,183
+127,econ_qualified_opportunity_zone_num,8599
+128,econ_qualified_opportunity_zone_data_year,8599
+129,env_flood_fema_sfha,229
+130,env_flood_fema_data_year,229
+131,chicago_industrial_corridor_num,17269
+132,chicago_industrial_corridor_name,17269
+133,chicago_industrial_corridor_data_year,17269
+134,econ_industrial_growth_zone_num,17695
+135,econ_industrial_growth_zone_data_year,17695
+136,econ_enterprise_zone_num,17695
+137,econ_enterprise_zone_data_year,17695
+138,econ_central_business_district_num,17832
+139,econ_central_business_district_data_year,17832
+140,census_school_district_elementary_geoid,17934
+141,census_school_district_secondary_geoid,17934
+142,census_acs5_school_district_elementary_geoid,17934
+143,census_acs5_school_district_secondary_geoid,17934
+144,year_new,262
+145,class_new,262
+146,township_code_new,262
+147,township_name_new,262
+148,nbhd,262
+149,mailed_bldg,262
+150,mailed_land,262
+151,mailed_tot,13428
+152,certified_bldg,262
+153,certified_land,262
+154,certified_tot,262
+155,board_bldg,279
+156,board_land,279
+157,board_tot,279
