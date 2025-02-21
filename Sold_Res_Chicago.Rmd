@@ -1,0 +1,58 @@
+---
+title: "Residential Sold"
+author: "Jack Honig"
+date: "2025-02-21"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+setwd("/Users/jackhonig/Downloads")
+CityLand <- read_csv("assessment_and_city_owned_new_data.csv")
+
+City_res_sold <- filter(CityLand, `Zoning Classification` == "RS-1" |
+  `Zoning Classification` == "RS-2" |
+  `Zoning Classification` == "RS-3" |
+  `Zoning Classification` == "RT-3.5" |
+  `Zoning Classification` == "RT-4" |
+  `Zoning Classification` == "RT-4A" |
+  `Zoning Classification` == "RM-4.5" |
+  `Zoning Classification` == "RM-5" |
+  `Zoning Classification` == "RM-5.5" |
+  `Zoning Classification` == "RM-6" |
+  `Zoning Classification` == "RM-6.5")
+
+
+City_res_sold <- filter(City_res_sold, `Community Area Name` == "ENGLEWOOD"
+                              | `Community Area Name` == "WEST ENGLEWOOD" | 
+                              `Community Area Name` == "NEW CITY" |
+                                `Community Area Name` == "NORTH LAWNDALE" | 
+                                `Community Area Name` == "EAST GARFIELD PARK" | 
+                                `Community Area Name` == "WEST GARFIELD PARK")
+
+
+City_res_sold <- filter(City_res_sold, `Property Status` == 
+                                  "Sold")
+
+sold_sqft <- filter(City_res_sold, `Sq. Ft.` != 0)
+sold_sqft <- filter(sold_sqft, !is.na(`Sq. Ft.`))
+
+sold_land <- filter(City_res_sold, `Land Value (2022)` != 0)
+sold_land <- filter(sold_land, !is.na(`Land Value (2022)`))
+
+sold_assessor <- filter(City_res_sold, `certified_land` != 0)
+sold_assessor <- filter(sold_assessor, !is.na(`certified_land`))
+
+sold_assessor_tot <- filter(City_res_sold, `certified_tot` != 0)
+sold_assessor_tot <- filter(sold_assessor_tot, !is.na(`certified_tot`))
+
+median(sold_sqft$`Sq. Ft.`)
+median(sold_land$`Land Value (2022)`)
+median(sold_assessor$certified_land)
+median(sold_assessor_tot$certified_tot)
+
+```
+```
