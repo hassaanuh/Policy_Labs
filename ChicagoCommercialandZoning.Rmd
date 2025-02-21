@@ -1,0 +1,404 @@
+---
+title: "Chicago Commercial Land Revised"
+author: "Jack Honig"
+date: "2025-02-13"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Introduction stuff: Getting to City-Owned commercial Properties in the 6 primary
+community areas: West Englewood, Englewood, New City, North Lawndale, and the
+Garfield Parks.
+
+```{r}
+setwd("/Users/jackhonig/Downloads")
+CityLand <- read_csv("assessment_and_city_owned_new_data.csv")
+
+CityLand_Com <- filter(CityLand, `Zoning Classification` != "RS-1")
+CityLand_Com <- filter(CityLand_Com, `Zoning Classification` != "RS-2")
+CityLand_Com <- filter(CityLand_Com, `Zoning Classification` != "RS-3")
+CityLand_Com <- filter(CityLand_Com, `Zoning Classification` != "RT-3.5")
+CityLand_Com <- filter(CityLand_Com, `Zoning Classification` != "RT-4")
+CityLand_Com <- filter(CityLand_Com, `Zoning Classification` != "RT-4A")
+CityLand_Com <- filter(CityLand_Com, `Zoning Classification` != "RM-4.5")
+CityLand_Com <- filter(CityLand_Com, `Zoning Classification` != "RM-5")
+CityLand_Com <- filter(CityLand_Com, `Zoning Classification` != "RM-5.5")
+CityLand_Com <- filter(CityLand_Com, `Zoning Classification` != "RM-6")
+CityLand_Com <- filter(CityLand_Com, `Zoning Classification` != "RM-6.5")
+CityLand_Com <- filter(CityLand_Com, `Zoning Classification` != "T")
+CityLand_Com <- filter(CityLand_Com, `Zoning Classification` != "POS-1")
+CityLand_Com <- filter(CityLand_Com, `Zoning Classification` != "POS-2")
+CityLand_Com <- filter(CityLand_Com, `Zoning Classification` != "POS-3")
+CityLand_Com <- filter(CityLand_Com, !is.na(`Zoning Classification`))
+
+
+Subset_CityLand_Com <- filter(CityLand_Com, `Community Area Name` == "ENGLEWOOD"
+                              | `Community Area Name` == "WEST ENGLEWOOD" | 
+                              `Community Area Name` == "NEW CITY" |
+                                `Community Area Name` == "NORTH LAWNDALE" | 
+                                `Community Area Name` == "EAST GARFIELD PARK" | 
+                                `Community Area Name` == "WEST GARFIELD PARK")
+```
+Now, making sure these properties are owned by the city
+
+```{r}
+
+Subset_cityland_owned <- filter(Subset_CityLand_Com, `Property Status` == 
+                                  "Owned by City")
+```
+
+Now, dividing this by the various community areas
+
+```{r}
+#Englewood
+englewood <- filter(Subset_cityland_owned, `Community Area Name` == "ENGLEWOOD")
+
+#West Englewood
+west_englewood <- filter(Subset_cityland_owned, `Community Area Name` == "WEST ENGLEWOOD")
+
+#New City
+new_city <- filter(Subset_cityland_owned, `Community Area Name` == "NEW CITY")
+
+#East Garfield Park
+east_garfield <- filter(Subset_cityland_owned, `Community Area Name` == "EAST GARFIELD PARK")
+
+#West Garfield Park
+west_garfield <- filter(Subset_cityland_owned, `Community Area Name` == "WEST GARFIELD PARK")
+
+#North Lawndale
+north_lawndale <- filter(Subset_cityland_owned, `Community Area Name` == "NORTH LAWNDALE")
+```
+
+Now, getting the number of commercial properties in each community area.
+
+```{r}
+#Englewood
+nrow(englewood)
+
+#West Englewood
+nrow(west_englewood)
+
+#New City
+nrow(new_city)
+
+#East Garfield Park
+nrow(east_garfield)
+
+#West Garfield Park
+nrow(west_garfield)
+
+#North Lawndale
+nrow(north_lawndale)
+```
+
+Now, the number of square footage results for each community area
+
+```{r}
+#Englewood
+englewood_sqft <- filter(englewood, `Sq. Ft.` != 0)
+englewood_sqft <- filter(englewood_sqft, !is.na(`Sq. Ft.`))
+nrow(englewood_sqft)
+
+#West Englewood
+west_englewood_sqft <- filter(west_englewood, `Sq. Ft.` != 0)
+west_englewood_sqft <- filter(west_englewood_sqft, !is.na(`Sq. Ft.`))
+nrow(west_englewood_sqft)
+
+#New City
+new_city_sqft <- filter(new_city, `Sq. Ft.` != 0)
+new_city_sqft <- filter(new_city_sqft, !is.na(`Sq. Ft.`))
+nrow(new_city_sqft)
+
+#East Garfield Park
+east_garfield_sqft <- filter(east_garfield, `Sq. Ft.` != 0)
+east_garfield_sqft <- filter(east_garfield_sqft, !is.na(`Sq. Ft.`))
+nrow(east_garfield_sqft)
+
+#West Garfield Park
+west_garfield_sqft <- filter(west_garfield, `Sq. Ft.` != 0)
+west_garfield_sqft <- filter(west_garfield_sqft, !is.na(`Sq. Ft.`))
+nrow(west_garfield_sqft)
+
+#North Lawndale
+north_lawndale_sqft <- filter(north_lawndale, `Sq. Ft.` != 0)
+north_lawndale_sqft <- filter(north_lawndale_sqft, !is.na(`Sq. Ft.`))
+nrow(north_lawndale_sqft)
+```
+
+Not a lot of results, so can't really break down these by community area. 
+Instead for square footage, the median will be from all of these areas combined.
+
+```{r}
+Subset_cityland_owned_sqft <- filter(Subset_cityland_owned, `Sq. Ft.` != 0)
+Subset_cityland_owned_sqft <- filter(Subset_cityland_owned_sqft, !is.na(`Sq. Ft.`))
+median(Subset_cityland_owned_sqft$`Sq. Ft.`)
+```
+
+Now, we will do it with land value
+
+```{r}
+#Englewood
+englewood_land <- filter(englewood, `Land Value (2022)` != 0)
+englewood_land <- filter(englewood_land, !is.na(`Land Value (2022)`))
+nrow(englewood_land)
+
+#West Englewood
+west_englewood_land <- filter(west_englewood, `Land Value (2022)` != 0)
+west_englewood_land <- filter(west_englewood_land, !is.na(`Land Value (2022)`))
+nrow(west_englewood_land)
+
+#New City
+new_city_land <- filter(new_city, `Land Value (2022)` != 0)
+new_city_land <- filter(new_city_land, !is.na(`Land Value (2022)`))
+nrow(new_city_land)
+
+#East Garfield Park
+east_garfield_land <- filter(east_garfield, `Land Value (2022)` != 0)
+east_garfield_land <- filter(east_garfield_land, !is.na(`Land Value (2022)`))
+nrow(east_garfield_land)
+
+#West Garfield Park
+west_garfield_land <- filter(west_garfield, `Land Value (2022)` != 0)
+west_garfield_land <- filter(west_garfield_land, !is.na(`Land Value (2022)`))
+nrow(west_garfield_land)
+
+#North Lawndale
+north_lawndale_land <- filter(north_lawndale, `Land Value (2022)` != 0)
+north_lawndale_land <- filter(north_lawndale_land, !is.na(`Land Value (2022)`))
+nrow(north_lawndale_land)
+```
+Here, there is enough data to break it out by community area, and the medians
+land values can be calculated
+
+```{r}
+median(englewood_land$`Land Value (2022)`)
+median(west_englewood_land$`Land Value (2022)`)
+median(new_city_land$`Land Value (2022)`)
+median(east_garfield_land$`Land Value (2022)`)
+median(west_englewood_land$`Land Value (2022)`)
+median(north_lawndale_land$`Land Value (2022)`)
+
+Subset_cityland_owned_land <- filter(Subset_cityland_owned, `Land Value (2022)` != 0)
+Subset_cityland_owned_land <- filter(Subset_cityland_owned_land, !is.na(`Land Value (2022)`))
+median(Subset_cityland_owned_land$`Land Value (2022)`)
+```
+Now, calculating the number within TIFS, OZs, and EZs in each neighborhood
+
+```{r}
+#Englewood
+englewood_TIF <- filter(englewood, !is.na(`tax_tif_district_num`))
+englewood_OZ <- filter(englewood, !is.na(`econ_qualified_opportunity_zone_num`))
+englewood_EZ <- filter(englewood, !is.na(`econ_enterprise_zone_num`))
+nrow(englewood_TIF)
+nrow(englewood_OZ)
+nrow(englewood_EZ)
+
+#West Englewood
+west_englewood_TIF <- filter(west_englewood, !is.na(`tax_tif_district_num`))
+west_englewood_OZ <- filter(west_englewood, !is.na(`econ_qualified_opportunity_zone_num`))
+west_englewood_EZ <- filter(west_englewood, !is.na(`econ_enterprise_zone_num`))
+nrow(west_englewood_TIF)
+nrow(west_englewood_OZ)
+nrow(west_englewood_EZ)
+
+#New City
+new_city_TIF <- filter(new_city, !is.na(`tax_tif_district_num`))
+new_city_OZ <- filter(new_city, !is.na(`econ_qualified_opportunity_zone_num`))
+new_city_EZ <- filter(new_city, !is.na(`econ_enterprise_zone_num`))
+nrow(new_city_TIF)
+nrow(new_city_OZ)
+nrow(new_city_EZ)
+
+#East Garfield Park
+east_garfield_TIF <- filter(east_garfield, !is.na(`tax_tif_district_num`))
+east_garfield_OZ <- filter(east_garfield, !is.na(`econ_qualified_opportunity_zone_num`))
+east_garfield_EZ <- filter(east_garfield, !is.na(`econ_enterprise_zone_num`))
+nrow(east_garfield_TIF)
+nrow(east_garfield_OZ)
+nrow(east_garfield_EZ)
+
+#West Garfield Park
+west_garfield_TIF <- filter(west_garfield, !is.na(`tax_tif_district_num`))
+west_garfield_OZ <- filter(west_garfield, !is.na(`econ_qualified_opportunity_zone_num`))
+west_garfield_EZ <- filter(west_garfield, !is.na(`econ_enterprise_zone_num`))
+nrow(west_garfield_TIF)
+nrow(west_garfield_OZ)
+nrow(west_garfield_EZ)
+
+#North Lawndale
+north_lawndale_TIF <- filter(north_lawndale, !is.na(`tax_tif_district_num`))
+north_lawndale_OZ <- filter(north_lawndale, !is.na(`econ_qualified_opportunity_zone_num`))
+north_lawndale_EZ <- filter(north_lawndale, !is.na(`econ_enterprise_zone_num`))
+nrow(north_lawndale_TIF)
+nrow(north_lawndale_OZ)
+nrow(north_lawndale_EZ)
+```
+
+This next part is to get the Zoning for each neighborhood.
+
+First up: Englewood
+
+```{r}
+All_eng <- filter(CityLand, `Community Area Name` == "ENGLEWOOD")
+All_eng <- filter(All_eng, `Property Status` == 
+                                  "Owned by City")
+
+Res_eng <- filter(All_eng, `Zoning Classification` == "RS-1" |
+  `Zoning Classification` == "RS-2" | 
+  `Zoning Classification` == "RS-3" |
+  `Zoning Classification` == "RT-3.5" |
+  `Zoning Classification` == "RT-4" |
+  `Zoning Classification` == "RT-4A" |
+  `Zoning Classification` == "RM-4.5" |
+  `Zoning Classification` == "RM-5" |
+  `Zoning Classification` == "RM-5.5" |
+  `Zoning Classification` == "RM-6" |
+  `Zoning Classification` == "RM-6.5")
+Res_eng <- filter(Res_eng, !is.na(`Zoning Classification`))
+
+PU_eng <- filter(All_eng, `Zoning Classification` == "T" |
+  `Zoning Classification` == "POS-1" |
+  `Zoning Classification` == "POS-2" |
+  `Zoning Classification` == "POS-3")
+PU_eng <- filter(PU_eng, !is.na(`Zoning Classification`))
+
+```
+
+Next, West Englewood
+
+```{r}
+All_weng <- filter(CityLand, `Community Area Name` == "WEST ENGLEWOOD")
+All_weng <- filter(All_weng, `Property Status` == 
+                                  "Owned by City")
+
+Res_weng <- filter(All_weng, `Zoning Classification` == "RS-1" |
+  `Zoning Classification` == "RS-2" | 
+  `Zoning Classification` == "RS-3" |
+  `Zoning Classification` == "RT-3.5" |
+  `Zoning Classification` == "RT-4" |
+  `Zoning Classification` == "RT-4A" |
+  `Zoning Classification` == "RM-4.5" |
+  `Zoning Classification` == "RM-5" |
+  `Zoning Classification` == "RM-5.5" |
+  `Zoning Classification` == "RM-6" |
+  `Zoning Classification` == "RM-6.5")
+Res_weng <- filter(Res_weng, !is.na(`Zoning Classification`))
+
+PU_weng <- filter(All_weng, `Zoning Classification` == "T" |
+  `Zoning Classification` == "POS-1" |
+  `Zoning Classification` == "POS-2" |
+  `Zoning Classification` == "POS-3")
+PU_weng <- filter(PU_weng, !is.na(`Zoning Classification`))
+```
+
+Next, New City:
+
+```{r}
+All_ncity <- filter(CityLand, `Community Area Name` == "NEW CITY")
+All_ncity <- filter(All_ncity, `Property Status` == 
+                                  "Owned by City")
+
+Res_ncity <- filter(All_ncity, `Zoning Classification` == "RS-1" |
+  `Zoning Classification` == "RS-2" | 
+  `Zoning Classification` == "RS-3" |
+  `Zoning Classification` == "RT-3.5" |
+  `Zoning Classification` == "RT-4" |
+  `Zoning Classification` == "RT-4A" |
+  `Zoning Classification` == "RM-4.5" |
+  `Zoning Classification` == "RM-5" |
+  `Zoning Classification` == "RM-5.5" |
+  `Zoning Classification` == "RM-6" |
+  `Zoning Classification` == "RM-6.5")
+Res_ncity <- filter(Res_ncity, !is.na(`Zoning Classification`))
+
+PU_ncity <- filter(All_ncity, `Zoning Classification` == "T" |
+  `Zoning Classification` == "POS-1" |
+  `Zoning Classification` == "POS-2" |
+  `Zoning Classification` == "POS-3")
+PU_ncity <- filter(PU_ncity, !is.na(`Zoning Classification`))
+```
+
+Next, East Garfield Park
+
+```{r}
+All_egar <- filter(CityLand, `Community Area Name` == "EAST GARFIELD PARK")
+All_egar <- filter(All_egar, `Property Status` == 
+                                  "Owned by City")
+
+Res_egar <- filter(All_egar, `Zoning Classification` == "RS-1" |
+  `Zoning Classification` == "RS-2" | 
+  `Zoning Classification` == "RS-3" |
+  `Zoning Classification` == "RT-3.5" |
+  `Zoning Classification` == "RT-4" |
+  `Zoning Classification` == "RT-4A" |
+  `Zoning Classification` == "RM-4.5" |
+  `Zoning Classification` == "RM-5" |
+  `Zoning Classification` == "RM-5.5" |
+  `Zoning Classification` == "RM-6" |
+  `Zoning Classification` == "RM-6.5")
+Res_egar <- filter(Res_egar, !is.na(`Zoning Classification`))
+
+PU_egar <- filter(All_egar, `Zoning Classification` == "T" |
+  `Zoning Classification` == "POS-1" |
+  `Zoning Classification` == "POS-2" |
+  `Zoning Classification` == "POS-3")
+PU_egar <- filter(PU_egar, !is.na(`Zoning Classification`))
+```
+
+Next, West Garfield Park
+
+```{r}
+All_wgar <- filter(CityLand, `Community Area Name` == "WEST GARFIELD PARK")
+All_wgar <- filter(All_wgar, `Property Status` == 
+                                  "Owned by City")
+
+Res_wgar <- filter(All_wgar, `Zoning Classification` == "RS-1" |
+  `Zoning Classification` == "RS-2" | 
+  `Zoning Classification` == "RS-3" |
+  `Zoning Classification` == "RT-3.5" |
+  `Zoning Classification` == "RT-4" |
+  `Zoning Classification` == "RT-4A" |
+  `Zoning Classification` == "RM-4.5" |
+  `Zoning Classification` == "RM-5" |
+  `Zoning Classification` == "RM-5.5" |
+  `Zoning Classification` == "RM-6" |
+  `Zoning Classification` == "RM-6.5")
+Res_wgar <- filter(Res_wgar, !is.na(`Zoning Classification`))
+
+PU_wgar <- filter(All_egar, `Zoning Classification` == "T" |
+  `Zoning Classification` == "POS-1" |
+  `Zoning Classification` == "POS-2" |
+  `Zoning Classification` == "POS-3")
+PU_wgar <- filter(PU_wgar, !is.na(`Zoning Classification`))
+```
+
+And Lastly, North Lawndale
+
+```{r}
+All_nlaw <- filter(CityLand, `Community Area Name` == "NORTH LAWNDALE")
+All_nlaw <- filter(All_nlaw, `Property Status` == 
+                                  "Owned by City")
+
+Res_nlaw <- filter(All_nlaw, `Zoning Classification` == "RS-1" |
+  `Zoning Classification` == "RS-2" | 
+  `Zoning Classification` == "RS-3" |
+  `Zoning Classification` == "RT-3.5" |
+  `Zoning Classification` == "RT-4" |
+  `Zoning Classification` == "RT-4A" |
+  `Zoning Classification` == "RM-4.5" |
+  `Zoning Classification` == "RM-5" |
+  `Zoning Classification` == "RM-5.5" |
+  `Zoning Classification` == "RM-6" |
+  `Zoning Classification` == "RM-6.5")
+Res_nlaw <- filter(Res_nlaw, !is.na(`Zoning Classification`))
+
+PU_nlaw <- filter(All_nlaw, `Zoning Classification` == "T" |
+  `Zoning Classification` == "POS-1" |
+  `Zoning Classification` == "POS-2" |
+  `Zoning Classification` == "POS-3")
+PU_nlaw <- filter(PU_nlaw, !is.na(`Zoning Classification`))
+```
+
