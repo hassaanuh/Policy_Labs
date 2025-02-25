@@ -1,5 +1,5 @@
 
-# Spatial Presentation
+# Using Vacant Lots to solve Chicago's Pension Crisis
 
 ## Introduction
 This project is focused on spatial data science, analysis, and presentation to find the solution to Chicago's vacant lot problems by making the lots sellable. It includes various tools and scripts to process and visualize spatial data.
