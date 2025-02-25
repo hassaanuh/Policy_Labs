@@ -2,7 +2,7 @@
 # Spatial Presentation
 
 ## Introduction
-This project is focused on spatial data analysis and presentation. It includes various tools and scripts to process and visualize spatial data.
+This project is focused on spatial data science, analysis, and presentation to find the solution to Chicago's vacant lot problems by making the lots sellable. It includes various tools and scripts to process and visualize spatial data.
 
 ## Installation
 To install the necessary dependencies, run the following command:
@@ -10,7 +10,7 @@ To install the necessary dependencies, run the following command:
 pip install -r requirements.txt
 ```
 ## Team
-I have to Thank Jack, Melodie, and Lijie for all their help with the project
+I have to thank Jack, Melodie, and Lijie for all their help with the project. I also want to thank the city of Chicago 
 ## Usage
 To run the main script, use the following command:
 ```bash
